@@ -1,0 +1,4 @@
+.changeName {
+    color: var(--fourth-text-color);
+    cursor: pointer;
+}

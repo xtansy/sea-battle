@@ -1,0 +1,16 @@
+.input {
+	min-height: 25px;
+	border-radius: 2px;
+	border: 1px solid grey;
+}
+
+.error {
+	color: red;
+	margin: 5px 0;
+}
+
+.inputBlock {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
