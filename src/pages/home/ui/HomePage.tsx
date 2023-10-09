@@ -1,27 +1,34 @@
 import css from "./HomePage.module.css";
 
-import { EnterName, RemoveName } from "features/user";
-import { useSelector } from "react-redux";
-import { userNameSelector } from "entities/user";
-import { Button } from "shared/ui";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { type GameType } from "entities/game";
+import { userNameSelector, enterName } from "entities/user";
+import { gameTypeSelector, enterGameType } from "entities/game";
+import { InitForm } from "widgets/InitForm";
 
 export const HomePage = () => {
-    const name = useSelector(userNameSelector);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const existName = useSelector(userNameSelector);
+    const existGameType = useSelector(gameTypeSelector);
+
+    const onSuccess = (name: string, gameType: GameType) => {
+        dispatch(enterName(name));
+        dispatch(enterGameType(gameType));
+        navigate("/game");
+    };
+
     return (
         <div className={css.page}>
             <div className={css.content}>
                 <h1 className={css.title}>Морской бой</h1>
-                {name ? (
-                    <div>
-                        <div>Ваше имя: {name}</div>
-                        <RemoveName />
-                    </div>
-                ) : (
-                    <EnterName />
-                )}
-                <div className={css.buttons}>
-                    <Button>Играть</Button>
-                </div>
+                <InitForm
+                    onSuccess={onSuccess}
+                    existName={existName ? existName : undefined}
+                    existGameType={existGameType ? existGameType : undefined}
+                />
             </div>
         </div>
     );

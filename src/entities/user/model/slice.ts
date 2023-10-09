@@ -4,6 +4,9 @@ import { type UserModel } from "./types";
 
 const initialState: UserModel = {
     name: null,
+    winsCount: 0,
+    defeatCount: 0,
+    gamesStory: [],
 };
 
 export const userModel = createSlice({

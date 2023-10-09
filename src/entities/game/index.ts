@@ -1,3 +1,3 @@
 export * from "./model/slice";
 export * from "./model/selectors";
-export * from "./ui/Profile";
+export * from "./model/types";
