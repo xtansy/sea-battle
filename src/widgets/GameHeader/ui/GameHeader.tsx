@@ -1,32 +1,34 @@
 import css from "./GameHeader.module.css";
 
-import { Profile } from "entities/user";
+import { useSelector } from "react-redux";
+
 import { Icon } from "shared/ui";
+import {
+    defeatCountSelector,
+    userNameSelector,
+    winsCountSelector,
+    Profile,
+} from "entities/user";
 
-interface GameHeaderProps {
-    myName: string;
-    myWinsCount: number;
+export const GameHeader = () => {
+    const name = useSelector(userNameSelector);
+    const winsCount = useSelector(winsCountSelector);
+    const defeatCount = useSelector(defeatCountSelector);
 
-    enemyName: string;
-    enemyWinsCount: number;
-}
+    if (!name) {
+        return null;
+    }
 
-export const GameHeader: React.FC<GameHeaderProps> = ({
-    myName,
-    myWinsCount,
-    enemyName,
-    enemyWinsCount,
-}) => {
     return (
         <div className={css.block}>
             <div className={css.infoBlock}>
-                <Profile name={myName} icon={<Icon type="user" />} />
-                <h2 className={css.wins}>{myWinsCount}</h2>
+                <Profile name={name} icon={<Icon type="user" />} />
+                <h2 className={css.wins}>{winsCount}</h2>
             </div>
             <p className={css.vs}>VS</p>
             <div className={css.infoBlock}>
-                <h2 className={css.defeats}>{enemyWinsCount}</h2>
-                <Profile name={enemyName} icon={<Icon type="robot" />} />
+                <h2 className={css.defeats}>{defeatCount}</h2>
+                <Profile name={"ИИ"} icon={<Icon type="robot" />} />
             </div>
         </div>
     );

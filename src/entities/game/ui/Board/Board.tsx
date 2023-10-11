@@ -2,6 +2,7 @@ import css from "./Board.module.css";
 
 import { Cell } from "../Cell/Cell";
 import { type ICell } from "entities/game";
+import React from "react";
 
 interface BoardProps {
     board: ICell[][];
@@ -15,7 +16,9 @@ export const Board: React.FC<BoardProps> = ({ board, renderCell }) => {
                 <div className={css.cells} key={i}>
                     {cells.map((cell, j) =>
                         renderCell ? (
-                            renderCell(cell)
+                            <React.Fragment key={j}>
+                                {renderCell(cell)}
+                            </React.Fragment>
                         ) : (
                             <Cell cell={cell} key={j} />
                         )

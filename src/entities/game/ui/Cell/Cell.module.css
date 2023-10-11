@@ -3,3 +3,23 @@
     height: 35px;
     border: 1px solid black;
 }
+
+.cell_enemy {
+    cursor: pointer;
+}
+
+.cell_empty {
+    
+}
+
+.cell_damaged_empty {
+    background-color:grey;
+}
+
+.cell_with_ship {
+    background-color: var(--background-color);
+}
+
+.cell_damaged_with_ship {
+    background-color: red;
+}

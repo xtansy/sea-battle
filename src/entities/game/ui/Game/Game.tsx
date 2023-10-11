@@ -7,17 +7,22 @@ interface GameProps {
     renderCell: (cell: ICell) => React.ReactNode;
     myBoardData: BoardData;
     enemyBoardData: BoardData;
+    bottomSlot?: React.ReactNode;
 }
 
 export const Game: React.FC<GameProps> = ({
     myBoardData,
     enemyBoardData,
     renderCell,
+    bottomSlot,
 }) => {
     return (
         <div className={css.game}>
-            <Board board={myBoardData.board} renderCell={renderCell} />
-            <Board board={enemyBoardData.board} />
+            <div className={css.boards}>
+                <Board board={myBoardData.board} />
+                <Board board={enemyBoardData.board} renderCell={renderCell} />
+            </div>
+            <div className={css.bottomSlot}>{bottomSlot && bottomSlot}</div>
         </div>
     );
 };

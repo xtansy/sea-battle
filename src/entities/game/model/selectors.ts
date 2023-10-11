@@ -1,7 +1,10 @@
 export const gameTypeSelector = (state: RootState) => state.game.gameType;
 
-export const enemyBoardSelector = (state: RootState) =>
-    state.game.enemyBoardData.board;
+export const enemyBoardDataSelector = (state: RootState) =>
+    state.game.enemyBoardData;
 
-export const myBoardSelector = (state: RootState) =>
-    state.game.myBoardData.board;
+export const myBoardDataSelector = (state: RootState) => state.game.myBoardData;
+
+export const gameStatusSelector = (state: RootState) => state.game.gameStatus;
+
+export const canShootSelector = (state: RootState) => state.game.canShoot;

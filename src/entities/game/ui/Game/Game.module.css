@@ -1,4 +1,13 @@
 .game {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
+
+.boards {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+

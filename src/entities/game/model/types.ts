@@ -22,8 +22,15 @@ export enum GameType {
     in_turn = "in_turn",
 }
 
+export enum GameStatus {
+    preparation = "preparation",
+    in_the_game = "in_the_game",
+}
+
 export interface GameModel {
     gameType: null | GameType;
+    gameStatus: GameStatus;
+    canShoot: boolean;
     myBoardData: BoardData;
     enemyBoardData: BoardData;
 }
