@@ -2,17 +2,32 @@ import { type ICell, CellStatus, type BoardData } from "..";
 import { type ShootData, type Ship } from "./types";
 
 export const checkIsOneCellShip = ({ x, y }: ShootData, board: ICell[][]) => {
-    const adjacent = [
-        board[x - 1][y],
-        board[x + 1][y],
-        board[x][y - 1],
-        board[x][y + 1],
+    const numRows = board.length;
+    const numCols = board[0].length;
+
+    const directions = [
+        [0, -1], // Верхний
+        [0, 1], // Нижний
+        [-1, 0], // Левый
+        [1, 0], // Правый
     ];
-    return !adjacent.find(
-        (item) =>
-            item.status === CellStatus.with_ship ||
-            item.status === CellStatus.damaged_with_ship
-    );
+
+    for (const [dx, dy] of directions) {
+        const newX = x + dx;
+        const newY = y + dy;
+
+        // Проверяем, что новые координаты находятся в пределах массива
+        if (newX >= 0 && newX < numRows && newY >= 0 && newY < numCols) {
+            const cell = board[newX][newY];
+            if (
+                cell.status === CellStatus.damaged_with_ship ||
+                cell.status === CellStatus.with_ship
+            ) {
+                return false;
+            }
+        }
+    }
+    return true;
 };
 
 export const checkIsHorizontalShip = (
@@ -43,14 +58,14 @@ export const findShip = ({ x, y }: ShootData, board: ICell[][]): Ship => {
     const isHorizontalShip = checkIsHorizontalShip({ x, y }, board);
     if (isHorizontalShip) {
         let startY = y;
-        for (let i = y; i >= 0 && checkIsCellHasShip(board[x][i - 1]); i--) {
+        for (let i = y; i >= 1 && checkIsCellHasShip(board[x][i - 1]); i--) {
             startY--;
         }
 
         let endY = y;
         for (
             let i = y;
-            i < board[x].length && checkIsCellHasShip(board[x][i + 1]);
+            i < board[x].length - 1 && checkIsCellHasShip(board[x][i + 1]);
             i++
         ) {
             endY++;
@@ -105,44 +120,51 @@ export const checkIsShipDestroyed = (ship: Ship, board: ICell[][]) => {
     }
 };
 
-export const markCell = (cell: ICell | undefined) => {
-    if (cell && cell.status === CellStatus.empty) {
-        cell.status = CellStatus.damaged_empty;
+const markAroundCell = (x: number, y: number, board: ICell[][]) => {
+    const numRows = board.length;
+    const numCols = board[0].length;
+
+    // Проверяем соседей по верхнему, нижнему, левому и правому направлениям
+    const directions = [
+        [0, -1], // Верхний
+        [0, 1], // Нижний
+        [-1, 0], // Левый
+        [1, 0], // Правый
+        [-1, -1], // Диагональ вверх-налево
+        [-1, 1], // Диагональ вверх-направо
+        [1, -1], // Диагональ вниз-налево
+        [1, 1], // Диагональ вниз-направо
+    ];
+
+    for (const [dx, dy] of directions) {
+        const newX = x + dx;
+        const newY = y + dy;
+
+        // Проверяем, что новые координаты находятся в пределах массива
+        if (newX >= 0 && newX < numRows && newY >= 0 && newY < numCols) {
+            const cell = board[newX][newY];
+            if (cell.status === CellStatus.empty) {
+                cell.status = CellStatus.damaged_empty;
+            }
+        }
     }
 };
 
 export const markAdjacentCells = (ship: Ship, board: ICell[][]) => {
-    if (ship.type === "oneCell") {
-        if (ship.x - 1 >= 0) {
-            markCell(board[ship.x - 1][ship.y]);
-        }
-        if (ship.x + 1 < board[ship.x].length) {
-            markCell(board[ship.x + 1][ship.y]);
-        }
-        markCell(board[ship.x][ship.y - 1]);
-        markCell(board[ship.x][ship.y + 1]);
-        return;
-    }
-
-    if (ship.type === "horizontal") {
-        markCell(board[ship.x][ship.startY - 1]);
-        markCell(board[ship.x][ship.endY + 1]);
-        for (let i = ship.startY; i <= ship.endY; i++) {
-            markCell(board[ship.x - 1][i]);
-            markCell(board[ship.x + 1][i]);
-        }
-        return;
-    }
-    if (ship.type === "vertical") {
-        markCell(board[ship.y][ship.startX - 1]);
-        markCell(board[ship.y][ship.endX + 1]);
-
-        for (let i = ship.startX; i < ship.endX; i++) {
-            markCell(board[i][ship.y - 1]);
-            markCell(board[i][ship.y + 1]);
-        }
-
-        return;
+    switch (ship.type) {
+        case "oneCell":
+            markAroundCell(ship.x, ship.y, board); // можно сюда передавать directions
+            break;
+        case "horizontal":
+            for (let i = ship.startY; i <= ship.endY; i++) {
+                markAroundCell(ship.x, i, board);
+            }
+            break;
+        case "vertical":
+            for (let i = ship.startX; i < ship.endX; i++) {
+                markAroundCell(i, ship.y, board);
+            }
+            break;
     }
 };
 
