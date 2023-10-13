@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { type UserModel } from "./types";
+import { GameResult, type UserModel } from "./types";
 
 const initialState: UserModel = {
     name: null,
@@ -19,7 +19,21 @@ export const userModel = createSlice({
         removeName: (state) => {
             state.name = null;
         },
+        win: (state) => {
+            state.winsCount++;
+            state.gamesStory.push({
+                date: new Date(),
+                result: GameResult.wictory,
+            });
+        },
+        lose: (state) => {
+            state.defeatCount++;
+            state.gamesStory.push({
+                date: new Date(),
+                result: GameResult.defeat,
+            });
+        },
     },
 });
 
-export const { enterName, removeName } = userModel.actions;
+export const { enterName, removeName, win, lose } = userModel.actions;

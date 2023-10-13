@@ -13,7 +13,6 @@ const robotLogick = () => {
         y: Math.floor(Math.random() * 10),
     };
 };
-
 export const useRobot = () => {
     const dispatch = useDispatch();
     const canShoot = useSelector(canShootSelector);

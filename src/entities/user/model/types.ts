@@ -1,4 +1,4 @@
-enum GameResult {
+export enum GameResult {
     defeat = "defeat",
     wictory = "wictory",
 }

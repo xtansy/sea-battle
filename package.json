@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ebay/nice-modal-react": "^1.2.13",
     "@hookform/resolvers": "^3.3.1",
     "@reduxjs/toolkit": "^1.9.7",
     "classnames": "^2.3.2",

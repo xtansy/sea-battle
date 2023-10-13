@@ -5,13 +5,23 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "shared/ui";
 import { gameTypeSelector } from "entities/game";
+import { useAlertModal } from "shared/lib";
 
 export const GameFooter = () => {
+    const modal = useAlertModal();
     const navigate = useNavigate();
     const gameType = useSelector(gameTypeSelector);
 
     const onClickGoHome = () => {
         navigate("/home");
+    };
+
+    const onClickRules = () => {
+        modal.show({
+            title: "Правила игры",
+            content: <div>КОНТЕНТ</div>,
+            onButtonClick: () => modal.remove(),
+        });
     };
 
     return (
@@ -22,7 +32,9 @@ export const GameFooter = () => {
                 </p>
             </div>
             <div className={css.buttons}>
-                <Button className={css.button}>Посмотреть правила</Button>
+                <Button onClick={onClickRules} className={css.button}>
+                    Посмотреть правила
+                </Button>
                 <Button className={css.button} onClick={onClickGoHome}>
                     ← Назад
                 </Button>

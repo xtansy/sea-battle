@@ -20,11 +20,11 @@ export const GameContent = () => {
     const generateBottomSlot = () => {
         switch (gameStatus) {
             case GameStatus.preparation:
-                return <StartGameButton />;
+                return <StartGameButton>Играть</StartGameButton>;
             case GameStatus.in_the_game:
                 return <RestartGameButton />;
             default:
-                return <button>Сыграть еще раз</button>;
+                return <StartGameButton>Сыграть еще раз</StartGameButton>;
         }
     };
 
