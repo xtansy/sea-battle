@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { type GameModel, type ICell, CellStatus, GameStatus } from "./types";
-import { shootCell } from "../lib/shoot";
-import { ShootData } from "../lib/types";
+import { shootCell, type ShootData, generateRandomBoolean } from "../lib";
+import { handleShoot } from "./handleShoot";
 
 const createMatrix = () => {
     const board: ICell[][] = [];
@@ -52,6 +52,7 @@ const dummy: ICell[][] = createMatrix();
 const initialState: GameModel = {
     gameType: null,
     gameStatus: GameStatus.preparation,
+
     canShoot: false,
     myBoardData: { destroyed: 0, board: dummy },
     enemyBoardData: { destroyed: 0, board: dummy },
@@ -69,14 +70,65 @@ export const gameModel = createSlice({
         },
 
         shoot: (state, { payload }: PayloadAction<ShootData>) => {
-            shootCell(payload, state.enemyBoardData);
+            if (!state.gameType) return;
+            const shootResult = shootCell(payload, state.enemyBoardData);
+            handleShoot(
+                shootResult,
+                state.gameType,
+                state.enemyBoardData.destroyed,
+                {
+                    onMissed: () => {
+                        state.canShoot = false;
+                    },
+                    onDamaged: () => {
+                        state.canShoot = false;
+                    },
+                    onAllShipsDestoyed: () => {
+                        state.canShoot = false;
+                        state.gameStatus = GameStatus.victory;
+                    },
+                }
+            );
+        },
+
+        robotShoot: (state, { payload }: PayloadAction<ShootData>) => {
+            if (!state.gameType) return;
+            const shootResult = shootCell(payload, state.myBoardData);
+            handleShoot(
+                shootResult,
+                state.gameType,
+                state.myBoardData.destroyed,
+                {
+                    onMissed: () => {
+                        state.canShoot = true;
+                    },
+                    onDamaged: () => {
+                        state.canShoot = true;
+                    },
+                    onAllShipsDestoyed: () => {
+                        state.gameStatus = GameStatus.defeat;
+                    },
+                }
+            );
         },
 
         startGame: (state) => {
             state.gameStatus = GameStatus.in_the_game;
-            state.canShoot = true;
+            state.canShoot = generateRandomBoolean();
+        },
+
+        restartGame: (state) => {
+            state.myBoardData.board = dummy;
+            state.myBoardData.destroyed = 0;
+
+            state.enemyBoardData.board = dummy;
+            state.enemyBoardData.destroyed = 0;
+
+            state.canShoot = false;
+            state.gameStatus = GameStatus.preparation;
         },
     },
 });
 
-export const { enterGameType, startGame, shoot } = gameModel.actions;
+export const { enterGameType, startGame, shoot, restartGame, robotShoot } =
+    gameModel.actions;

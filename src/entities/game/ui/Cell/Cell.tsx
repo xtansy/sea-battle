@@ -16,7 +16,7 @@ export const Cell: React.FC<CellProps> = ({ cell, onClick, enemy }) => {
     const clazz = classNames(css.cell, {
         //          ↓ not visualize ship if cell is an enemy
         [modifier]: !(enemy && cell.status === CellStatus.with_ship),
-        [css["cell_enemy"]]: enemy && onClick,
+        [css["cell_pointer"]]: enemy && onClick,
     });
 
     return <div onClick={onClick} className={clazz}></div>;

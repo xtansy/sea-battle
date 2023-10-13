@@ -18,13 +18,15 @@ export interface BoardData {
 }
 
 export enum GameType {
-    before_the_miss = "before_the_miss",
-    in_turn = "in_turn",
+    before_the_miss = "До промаха",
+    in_turn = "По очереди",
 }
 
 export enum GameStatus {
-    preparation = "preparation",
-    in_the_game = "in_the_game",
+    preparation = "Подготовка",
+    in_the_game = "В игре",
+    victory = "Победа!",
+    defeat = "Поражение",
 }
 
 export interface GameModel {

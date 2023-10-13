@@ -1,5 +1,5 @@
-import { type ICell, CellStatus, type BoardData } from "..";
-import { type ShootData, type Ship } from "./types";
+import { type ICell, CellStatus, type BoardData } from "../..";
+import { type ShootData, type Ship, type ShootResult } from "./types";
 
 export const checkIsOneCellShip = ({ x, y }: ShootData, board: ICell[][]) => {
     const numRows = board.length;
@@ -168,13 +168,16 @@ export const markAdjacentCells = (ship: Ship, board: ICell[][]) => {
     }
 };
 
-export const shootCell = ({ x, y }: ShootData, boardData: BoardData) => {
+export const shootCell = (
+    { x, y }: ShootData,
+    boardData: BoardData
+): ShootResult => {
     const board = boardData.board;
     const cell = board[x][y];
 
     if (cell.status === CellStatus.empty) {
         cell.status = CellStatus.damaged_empty;
-        return;
+        return false;
     }
 
     if (cell.status === CellStatus.with_ship) {
@@ -187,6 +190,9 @@ export const shootCell = ({ x, y }: ShootData, boardData: BoardData) => {
         if (checkIsShipDestroyed(ship, board)) {
             markAdjacentCells(ship, board);
             boardData.destroyed++;
+            return { destroyed: true };
         }
+        return { destroyed: false };
     }
+    return false;
 };

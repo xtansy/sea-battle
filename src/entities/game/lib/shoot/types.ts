@@ -24,3 +24,11 @@ export interface OneCellShip {
 }
 
 export type Ship = HorizontalShip | VerticalShip | OneCellShip;
+
+type Missed = false;
+
+interface Hit {
+    destroyed: boolean;
+}
+
+export type ShootResult = Hit | Missed;

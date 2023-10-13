@@ -1,7 +1,6 @@
 .root {
     width: 1000px;
-    height: 650px;
     background-color: var(--content-backgound-color);
-    padding: 30px;
+    padding: 22px 30px 22px 30px;
     border-radius: 10px;
 }

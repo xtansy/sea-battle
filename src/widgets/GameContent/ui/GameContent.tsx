@@ -17,18 +17,23 @@ export const GameContent = () => {
     const enemyBoardData = useSelector(enemyBoardDataSelector);
     const gameStatus = useSelector(gameStatusSelector);
 
+    const generateBottomSlot = () => {
+        switch (gameStatus) {
+            case GameStatus.preparation:
+                return <StartGameButton />;
+            case GameStatus.in_the_game:
+                return <RestartGameButton />;
+            default:
+                return <button>Сыграть еще раз</button>;
+        }
+    };
+
     return (
         <div className={css.gameContent}>
             <Game
                 myBoardData={myBoardData}
                 enemyBoardData={enemyBoardData}
-                bottomSlot={
-                    gameStatus === GameStatus.preparation ? (
-                        <StartGameButton />
-                    ) : (
-                        <RestartGameButton />
-                    )
-                }
+                bottomSlot={generateBottomSlot()}
                 renderCell={(cell: ICell) => <CellShot cell={cell} />}
             />
         </div>

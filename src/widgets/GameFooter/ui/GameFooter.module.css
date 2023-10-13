@@ -2,5 +2,25 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    width: fit-content;
     gap: 15px;
+}
+
+.textBlock {
+    width: fit-content;
+}
+
+.gameType span {
+    color: var(--second-text-color);
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.button {
+    width: 100%;
 }

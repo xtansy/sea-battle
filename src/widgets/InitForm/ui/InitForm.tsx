@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { schema, InitSchema } from "../model/schema";
 import { Button } from "shared/ui";
-import { type GameType } from "entities/game";
+import { GameType } from "entities/game";
 
 interface InitFormProps {
     existName?: string;
@@ -53,8 +53,8 @@ export const InitForm: React.FC<InitFormProps> = ({
                     {...register("gameType")}
                 >
                     <option value="">Не выбрано</option>
-                    <option value="before_the_miss">before_the_miss</option>
-                    <option value="in_turn">in_turn</option>
+                    <option value={GameType.before_the_miss}>До промаха</option>
+                    <option value={GameType.in_turn}>По очереди</option>
                 </select>
                 <p className={css.error}>{errors.gameType?.message}</p>
             </div>

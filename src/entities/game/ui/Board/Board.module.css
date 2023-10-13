@@ -7,3 +7,25 @@
     display: flex;
 }
 
+.rowsBlock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.collsBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.index {
+    width: 17px;
+    font-weight: 600;
+}
+
+.letters {
+    margin-bottom: 5px;
+    display: flex;
+    gap: 18px;
+    margin-left: 33px;
+}
