@@ -5,12 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "shared/ui";
 import { gameTypeSelector } from "entities/game";
+import { Rules } from "entities/rules";
 import { useAlertModal } from "shared/lib";
 
 export const GameFooter = () => {
+    const gameType = useSelector(gameTypeSelector);
+
     const modal = useAlertModal();
     const navigate = useNavigate();
-    const gameType = useSelector(gameTypeSelector);
+
+    if (!gameType) return null;
 
     const onClickGoHome = () => {
         navigate("/home");
@@ -19,7 +23,7 @@ export const GameFooter = () => {
     const onClickRules = () => {
         modal.show({
             title: "Правила игры",
-            content: <div>КОНТЕНТ</div>,
+            content: <Rules gameType={gameType} />,
             onButtonClick: () => modal.remove(),
         });
     };

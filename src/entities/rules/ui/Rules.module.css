@@ -1,0 +1,19 @@
+.rules {
+    line-height: 20px;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rulesHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rulesContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
