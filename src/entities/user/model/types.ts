@@ -1,16 +1,19 @@
+import { GameType } from "entities/game/@x/user";
+
 export enum GameResult {
-    defeat = "defeat",
-    wictory = "wictory",
+    defeat = "Поражение",
+    wictory = "Победа",
 }
 
 export interface GameInfo {
-    date: Date;
+    timestamp: number;
     result: GameResult;
+    gameType: GameType;
 }
 
 export interface UserModel {
     name: null | string;
     winsCount: number;
     defeatCount: number;
-    gamesStory: GameInfo[];
+    gameStories: GameInfo[];
 }

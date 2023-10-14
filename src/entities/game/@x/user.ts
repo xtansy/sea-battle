@@ -6,5 +6,4 @@
  * @see https://github.com/feature-sliced/documentation/discussions/390#discussioncomment-5570073
  */
 
-export type { GameInfo } from "../model/types";
-export { GameResult } from "../model/types";
+export { GameType } from "../model/types";

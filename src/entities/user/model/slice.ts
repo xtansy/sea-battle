@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GameType } from "entities/game/@x/user";
 
 import { GameResult, type UserModel } from "./types";
 
@@ -6,7 +7,7 @@ const initialState: UserModel = {
     name: null,
     winsCount: 0,
     defeatCount: 0,
-    gamesStory: [],
+    gameStories: [],
 };
 
 export const userModel = createSlice({
@@ -19,18 +20,20 @@ export const userModel = createSlice({
         removeName: (state) => {
             state.name = null;
         },
-        win: (state) => {
+        win: (state, { payload }: PayloadAction<GameType>) => {
             state.winsCount++;
-            state.gamesStory.push({
-                date: new Date(),
+            state.gameStories.push({
+                timestamp: new Date().getTime(),
                 result: GameResult.wictory,
+                gameType: payload,
             });
         },
-        lose: (state) => {
+        lose: (state, { payload }: PayloadAction<GameType>) => {
             state.defeatCount++;
-            state.gamesStory.push({
-                date: new Date(),
+            state.gameStories.push({
+                timestamp: new Date().getTime(),
                 result: GameResult.defeat,
+                gameType: payload,
             });
         },
     },

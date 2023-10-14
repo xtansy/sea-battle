@@ -37,14 +37,14 @@ export const useRobot = () => {
     useEffect(() => {
         const robot = robotPlayer();
         if (!(gameStatus === GameStatus.in_the_game && !canShoot)) {
-            console.log("robot stop");
+            // console.log("robot stop");
             robot.stop();
         } else {
-            console.log("robot start");
+            // console.log("robot start");
             robot.start();
         }
         return () => {
-            console.log("robot stop");
+            // console.log("robot stop");
             robot.stop();
         };
     }, [gameStatus, canShoot]);

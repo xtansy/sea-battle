@@ -4,12 +4,20 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "shared/ui";
-import { gameTypeSelector } from "entities/game";
+import {
+    gameTypeSelector,
+    gameStatusSelector,
+    GameStatus,
+} from "entities/game";
+import { GameStories } from "entities/gameStory";
+import { gameStoriesSelector } from "entities/user";
 import { Rules } from "entities/rules";
 import { useAlertModal } from "shared/lib";
 
 export const GameFooter = () => {
     const gameType = useSelector(gameTypeSelector);
+    const gameStatus = useSelector(gameStatusSelector);
+    const gameStories = useSelector(gameStoriesSelector);
 
     const modal = useAlertModal();
     const navigate = useNavigate();
@@ -28,6 +36,14 @@ export const GameFooter = () => {
         });
     };
 
+    const onClickGameStories = () => {
+        modal.show({
+            title: "История игр",
+            content: <GameStories gameStories={[...gameStories].reverse()} />,
+            onButtonClick: () => modal.remove(),
+        });
+    };
+
     return (
         <div className={css.gameFooter}>
             <div className={css.textBlock}>
@@ -39,7 +55,14 @@ export const GameFooter = () => {
                 <Button onClick={onClickRules} className={css.button}>
                     Посмотреть правила
                 </Button>
-                <Button className={css.button} onClick={onClickGoHome}>
+                <Button onClick={onClickGameStories} className={css.button}>
+                    История моих игр
+                </Button>
+                <Button
+                    disabled={gameStatus === GameStatus.in_the_game}
+                    className={css.button}
+                    onClick={onClickGoHome}
+                >
                     ← Назад
                 </Button>
             </div>

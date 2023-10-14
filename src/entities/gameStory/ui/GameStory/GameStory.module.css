@@ -1,0 +1,42 @@
+.gameStory {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 300px;
+
+    border: 1px solid var(--background-color);
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.gameType {
+    color: var(--fourth-text-color);
+    font-size: 14px;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+}
+
+.timestamp {
+    font-size: 10px;
+    color: var(--fourth-text-color);
+}
+
+.gameResult {
+}
+
+.gameResult_win {
+    color: var(--green);
+}
+
+.gameResult_lose{
+    color: var(--red);
+}

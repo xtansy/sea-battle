@@ -185,7 +185,7 @@ export const shootCell = (
 
         const ship = findShip({ x, y }, board);
 
-        console.log(ship);
+        // console.log(ship);
 
         if (checkIsShipDestroyed(ship, board)) {
             markAdjacentCells(ship, board);

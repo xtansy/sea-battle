@@ -11,11 +11,17 @@ export const Button: React.FC<ButtonProps> = ({
     variant = "standart",
     children,
     className,
+    disabled,
     ...props
 }) => {
-    const clazz = cn(css.button, css[`button_${variant}`], className);
+    const clazz = cn(
+        css.button,
+        css[`button_${variant}`],
+        disabled && css.button_disabled,
+        className
+    );
     return (
-        <button {...props} className={clazz}>
+        <button {...props} disabled={disabled} className={clazz}>
             {children}
         </button>
     );

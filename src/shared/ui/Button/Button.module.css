@@ -12,6 +12,11 @@
 	padding-left: 30px;
 }
 
+.button_disabled {
+	cursor: default;
+    opacity: 0.5;
+}
+
 .button_standart {
 	color: var(--third-text-color);
 	border-radius: 20px;

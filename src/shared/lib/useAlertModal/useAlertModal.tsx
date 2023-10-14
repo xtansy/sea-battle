@@ -1,5 +1,7 @@
+import css from "./useAlertModal.module.css";
+
 import { useModal, create as createModal } from "@ebay/nice-modal-react";
-import { Button, Modal } from "../ui";
+import { Button, Modal } from "../../ui";
 
 interface AlertModalPresenterProps {
     title: string;
@@ -16,8 +18,8 @@ const AlertModalPresenter: React.FC<AlertModalPresenterProps> = ({
 }) => {
     return (
         <Modal>
-            <span>{title}</span>
-            <div>{content}</div>
+            <h1 className={css.title}>{title}</h1>
+            <div className={css.content}>{content}</div>
             <Button onClick={onButtonClick}>{buttonText}</Button>
         </Modal>
     );

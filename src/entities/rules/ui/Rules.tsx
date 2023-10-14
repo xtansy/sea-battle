@@ -10,8 +10,8 @@ interface RulesProps {
 const BeforeTheMissRules = () => {
     return (
         <div className={css.rulesContent}>
-            {beforeTheMissRules.map((item) => (
-                <p>{item}</p>
+            {beforeTheMissRules.map((item, i) => (
+                <p key={i}>{item}</p>
             ))}
         </div>
     );
@@ -20,8 +20,8 @@ const BeforeTheMissRules = () => {
 export const InTurnRules = () => {
     return (
         <div className={css.rulesContent}>
-            {inTurnRules.map((item) => (
-                <p>{item}</p>
+            {inTurnRules.map((item, i) => (
+                <p key={i}>{item}</p>
             ))}
         </div>
     );
@@ -32,8 +32,8 @@ export const Rules: React.FC<RulesProps> = ({ gameType }) => {
         <div className={css.rules}>
             <h3>Тип игры: {gameType}</h3>
             <div className={css.rulesHeader}>
-                {generalRules.map((item) => (
-                    <p>{item}</p>
+                {generalRules.map((item, i) => (
+                    <p key={i}>{item}</p>
                 ))}
             </div>
             {gameType === GameType.before_the_miss && <BeforeTheMissRules />}
