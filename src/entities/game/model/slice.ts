@@ -100,7 +100,6 @@ export const gameModel = createSlice({
         },
 
         robotShoot: (state, { payload }: PayloadAction<ShootData>) => {
-            console.log(payload);
             if (!state.gameType) return;
             handleShoot(payload, state.myBoardData, state.gameType, {
                 onMissed: () => {

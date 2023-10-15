@@ -2,24 +2,29 @@
     width: 35px;
     height: 35px;
     border: 1px solid black;
+    transition:  all 0.3s ;
 }
 
 .cell_pointer {
     cursor: pointer;
+    transition:  all 0.3s ;
 }
 
 .cell_empty {
-    
+    transition:  all 0.3s ;
 }
 
 .cell_damaged_empty {
     background-color:grey;
+    transition:  all 0.3s ;
 }
 
 .cell_with_ship {
     background-color: var(--background-color);
+    transition:  all 0.3s ;
 }
 
 .cell_damaged_with_ship {
     background-color: red;
+    transition:  all 0.3s ;
 }
