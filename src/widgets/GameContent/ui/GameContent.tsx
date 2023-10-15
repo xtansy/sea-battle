@@ -23,30 +23,26 @@ export const GameContent = () => {
     const gameStatus = useSelector(gameStatusSelector);
 
     const generateBottomSlot = () => {
-        switch (gameStatus) {
-            case GameStatus.preparation:
-                return (
-                    <>
-                        <div className={css.buttons}>
-                            <StartGameButton>Играть</StartGameButton>
-                            <RandomPlaceShipButton />
-                        </div>
-                        <div className={css.shipActions}>
-                            <PutShip />
-                            <RemoveShip />
-                        </div>
-                    </>
-                );
-            case GameStatus.in_the_game:
-                return (
-                    <div className={css.actions}>
-                        <RestartGameButton />
-                        <ToggleDevMode />
-                    </div>
-                );
-            default:
-                return <StartGameButton>Сыграть еще раз</StartGameButton>;
+        if (gameStatus === GameStatus.in_the_game) {
+            return (
+                <div className={css.actions}>
+                    <RestartGameButton />
+                    <ToggleDevMode />
+                </div>
+            );
         }
+        return (
+            <>
+                <div className={css.buttons}>
+                    <StartGameButton>Играть</StartGameButton>
+                    <RandomPlaceShipButton />
+                </div>
+                <div className={css.shipActions}>
+                    <PutShip />
+                    <RemoveShip />
+                </div>
+            </>
+        );
     };
 
     return (

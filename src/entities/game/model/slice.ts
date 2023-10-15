@@ -115,6 +115,7 @@ export const gameModel = createSlice({
         },
 
         startGame: (state) => {
+            emptyFilledBoard(state.enemyBoardData.board);
             randomPlaceShip(state.enemyBoardData.board);
             state.gameStatus = GameStatus.in_the_game;
             state.canShoot = generateRandomBoolean();

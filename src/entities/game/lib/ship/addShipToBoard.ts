@@ -128,22 +128,20 @@ export const addShipToBoard = (
     endY: number
 ) => {
     if (!checkIsOneCellShip({ x: startX, y: startY }, board)) {
+        console.log("return 1");
         return false;
     }
 
     const isHorizontal = startX === endX;
-    const isVertical = startY === endY;
-    // Проверяем, что корабль размещается только горизонтально или вертикально
 
-    if (isHorizontal && isVertical) {
-        return false;
-    }
     if (isHorizontal) {
         if (endY - startY + 1 !== shipType) {
+            console.log("return 3");
             return false;
         }
     } else {
         if (endX - startX + 1 !== shipType) {
+            console.log("return 4");
             return false;
         }
     }
