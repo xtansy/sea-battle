@@ -1,6 +1,6 @@
 import { CellStatus, ICell, findShip } from ".";
 
-export const removeShipFromBoard = (x: number, y: number, board: ICell[][]) => {
+export const removeShipFromBoard = (y: number, x: number, board: ICell[][]) => {
     if (board[x][y].status === CellStatus.empty) return;
 
     const ship = findShip({ x, y }, board);
@@ -11,7 +11,7 @@ export const removeShipFromBoard = (x: number, y: number, board: ICell[][]) => {
         }
     } else if (ship.type === "vertical") {
         for (let i = ship.startX; i <= ship.endX; i++) {
-            board[ship.y][i].status = CellStatus.empty;
+            board[i][ship.y].status = CellStatus.empty;
         }
     } else {
         board[ship.x][ship.y].status = CellStatus.empty;
