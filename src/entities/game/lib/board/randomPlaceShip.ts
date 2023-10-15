@@ -1,6 +1,6 @@
 import { ICell, CellStatus } from "../../model/types";
 import { BOARD_SIZE, SHIP_SIZES } from "../constants";
-import { generateRandomBoolean, generateRandomInt } from "../generators";
+import { generateRandomBoolean, generateRandomInt } from "shared/lib";
 
 const offsets = [
     { x: 0, y: 0 },

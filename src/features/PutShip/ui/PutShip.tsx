@@ -21,7 +21,6 @@ export const PutShip = () => {
 
     const onSelectStartY = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = +e.target.value;
-        console.log("startY", value);
         setStart((old) => ({ ...old, startY: value }));
         if (len === 1) {
             setEnd((old) => ({ ...old, endY: value }));
@@ -29,7 +28,6 @@ export const PutShip = () => {
     };
     const onSelectStartX = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = +e.target.value;
-        console.log("startX", value);
         setStart((old) => ({ ...old, startX: value }));
         if (len === 1) {
             setEnd((old) => ({ ...old, endX: value }));
@@ -38,23 +36,14 @@ export const PutShip = () => {
 
     const onSelectEndY = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = +e.target.value;
-        console.log("endY", value);
         setEnd((old) => ({ ...old, endY: value }));
     };
     const onSelectEndX = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = +e.target.value;
-        console.log("endX", value);
         setEnd((old) => ({ ...old, endX: value }));
     };
 
     const onClickPut = () => {
-        console.log({
-            shipType: len,
-            startX: start.startX,
-            startY: start.startY,
-            endX: end.endX,
-            endY: end.endY,
-        });
         dispatch(
             addShip({
                 shipType: len,

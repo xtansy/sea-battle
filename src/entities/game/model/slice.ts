@@ -3,7 +3,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { type GameModel, type ICell, GameStatus } from "./types";
 import {
     type ShootData,
-    generateRandomBoolean,
     EMPTY_BOARD,
     randomPlaceShip,
     emptyFilledBoard,
@@ -13,6 +12,8 @@ import {
     removeShipFromBoard,
     clearBoard,
 } from "../lib";
+
+import { generateRandomBoolean } from "shared/lib";
 
 // const createMatrix = () => {
 //     const board: ICell[][] = [];
@@ -96,10 +97,10 @@ export const gameModel = createSlice({
                     state.gameStatus = GameStatus.victory;
                 },
             });
-            console.log("еще один дестройд ", state.enemyBoardData.destroyed);
         },
 
         robotShoot: (state, { payload }: PayloadAction<ShootData>) => {
+            console.log(payload);
             if (!state.gameType) return;
             handleShoot(payload, state.myBoardData, state.gameType, {
                 onMissed: () => {

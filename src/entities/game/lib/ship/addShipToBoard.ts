@@ -135,19 +135,15 @@ export const addShipToBoard = (
     const isVertical = startY === endY;
     // Проверяем, что корабль размещается только горизонтально или вертикально
 
-    console.log("isHorizontal = ", isHorizontal);
-    console.log("isVertical = ", isVertical);
     if (isHorizontal && isVertical) {
         return false;
     }
     if (isHorizontal) {
         if (endY - startY + 1 !== shipType) {
-            console.log("игрики");
             return false;
         }
     } else {
         if (endX - startX + 1 !== shipType) {
-            console.log("иксики");
             return false;
         }
     }
@@ -162,7 +158,6 @@ export const addShipToBoard = (
         shipType !== 1 &&
         !(endX - startX + 1 <= shipType || endY - startY + 1 <= shipType)
     ) {
-        console.log("1");
         return false;
     }
 
@@ -171,8 +166,6 @@ export const addShipToBoard = (
         for (let j = Math.min(startY, endY); j <= Math.max(startY, endY); j++) {
             if (i >= 0 && i < board.length && j >= 0 && j < board[0].length) {
                 if (board[i][j].status === CellStatus.with_ship) {
-                    console.log("2");
-
                     return false;
                 }
             }
@@ -181,8 +174,6 @@ export const addShipToBoard = (
 
     // Проверяем, что на доске есть доступное место для корабля заданного типа
     if (countShipsOnBoard(board, shipType) >= getMaximumShipsCount(shipType)) {
-        console.log("count", countShipsOnBoard(board, shipType));
-        console.log("max", getMaximumShipsCount(shipType));
         return false;
     }
 

@@ -4,7 +4,7 @@ import { Fragment } from "react";
 
 import { Cell } from "../Cell/Cell";
 import { CellStatus, type ICell } from "entities/game";
-import { generateRussianAlphabet } from "../../lib";
+import { generateRussianAlphabet } from "shared/lib";
 
 interface BoardProps {
     board: ICell[][];
