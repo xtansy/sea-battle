@@ -19,3 +19,40 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 992px)  {
+    .buttons {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .shipActions {
+        margin-top: 20px;
+        max-width: 300px;
+        margin-bottom: 1px;
+    }
+    .actions {
+    }
+    
+}
+
+@media (max-width: 519px)  {
+    .shipActions {
+        display: flex;
+        flex-direction: column;
+    } 
+}
+
+@media (max-width: 519px)  {
+    .buttons {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 433px)  {
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+}

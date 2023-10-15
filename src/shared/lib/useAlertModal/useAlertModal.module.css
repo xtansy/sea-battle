@@ -7,3 +7,14 @@
     max-height: 80vh;
     min-height: 20px;
 }
+
+@media (max-width: 527px)  {   
+    .content {
+        font-size: 14px;
+        width: fit-content;
+        height: fit-content;
+    }
+    .title {
+        font-size:14px;
+    }
+}

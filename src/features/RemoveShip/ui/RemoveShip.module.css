@@ -36,3 +36,20 @@
 .label {
     width: 150px;
 }
+
+@media (max-width: 520px)  {
+    .selectBlock {
+        font-size: 12px;
+    }
+    .descr {
+        font-size: 10px;
+        color: var(--fourth-text-color);
+    }
+
+    .removeShip {
+        align-items: center;
+    }
+    
+}
+
+

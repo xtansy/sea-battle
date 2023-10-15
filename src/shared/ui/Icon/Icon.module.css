@@ -7,3 +7,11 @@
 .icon_clickable {
     cursor: pointer;
 }
+
+@media (max-width: 519px)  {
+    .icon {
+        width: 30px;
+        height: 30px;
+        background-repeat: no-repeat;
+    }
+}

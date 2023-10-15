@@ -38,3 +38,14 @@
 :global(body.modalIsOpened) {
     overflow: hidden;
 }
+
+
+@media (max-width: 527px)  {   
+    .modal {
+        padding: 10px;
+    }
+    .x {
+        right: 8px;
+        top: 8px;
+    }
+}

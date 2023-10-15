@@ -40,3 +40,10 @@
 .gameResult_lose{
     color: var(--red);
 }
+
+@media (max-width: 320px)  {   
+    .gameStory {
+        min-width: 280px;
+    }
+    
+}

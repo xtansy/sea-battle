@@ -32,3 +32,35 @@
     font-size: 34px;
     font-weight: 700;
 }
+
+@media (max-width: 519px)  {
+    .vs {
+        font-size: 14px;
+    }
+    .block {
+        justify-content: space-evenly;
+    }
+    
+    .defeats {
+        color: red;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .infoBlock {
+        width: auto;
+        gap: 70px;
+    }
+    
+    .wins {
+        color: rgb(61, 232, 61);
+        font-size: 14px;
+        font-weight: 700;
+    }
+}
+@media (max-width: 519px)  {
+    .infoBlock {
+        gap: 40px;
+    }
+}
+
