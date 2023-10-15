@@ -25,7 +25,7 @@ export const GameFooter = () => {
     if (!gameType) return null;
 
     const onClickGoHome = () => {
-        navigate("/home");
+        navigate("/");
     };
 
     const onClickRules = () => {

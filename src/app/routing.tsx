@@ -14,7 +14,7 @@ const Guard = ({ children }: GuardProps) => {
     const gameType = useSelector(gameTypeSelector);
 
     if (!gameType) {
-        return <Navigate to="/home" />;
+        return <Navigate to="/" />; // Vercel не работает если не указать "/", до этого было "/home"
     }
     return children;
 };
@@ -23,7 +23,7 @@ export const Routing = () => {
     return (
         <Routes>
             <Route element={<Layout />}>
-                <Route path="/home" element={<HomePage />} />
+                <Route path="/" element={<HomePage />} />
                 <Route
                     path="/game"
                     element={
