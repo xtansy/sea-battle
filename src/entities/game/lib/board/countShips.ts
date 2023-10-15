@@ -1,6 +1,6 @@
 import { type ICell } from "../../model/types";
 
-import { checkIsCellHasShip } from "../ship";
+import { ShipLength, checkIsCellHasShip } from "../ship";
 import { SHIP_SIZES } from "..";
 
 export const countShips = (board: ICell[][]): number => {
@@ -39,7 +39,9 @@ export const countShips = (board: ICell[][]): number => {
 
                     // Если размер корабля соответствует одному из известных размеров кораблей,
                     // уменьшаем соответствующий счетчик
-                    const index = MUTABLE_SHIP_SIZES.indexOf(size);
+                    const index = MUTABLE_SHIP_SIZES.indexOf(
+                        size as ShipLength
+                    );
                     if (index !== -1) {
                         MUTABLE_SHIP_SIZES.splice(index, 1);
                         shipCount++;
