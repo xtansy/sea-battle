@@ -41,7 +41,7 @@ export const markAroundShip = (ship: ShipCoords, board: ICell[][]) => {
             }
             break;
         case "vertical":
-            for (let i = ship.startX; i < ship.endX; i++) {
+            for (let i = ship.startX; i <= ship.endX; i++) {
                 markAroundCell(i, ship.y, board);
             }
             break;
