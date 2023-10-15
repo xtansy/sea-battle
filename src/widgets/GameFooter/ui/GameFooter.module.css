@@ -1,8 +1,8 @@
 .gameFooter {
+    width: 100%;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    width: fit-content;
     gap: 15px;
 }
 
@@ -17,10 +17,12 @@
 
 .buttons {
     display: flex;
-    flex-direction: column;
     gap: 15px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .button {
     width: 100%;
+    max-width: 400px;
 }

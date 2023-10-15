@@ -1,0 +1,28 @@
+
+.putShip {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.selectBlock {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.select {
+    width: 50px;
+    outline: none;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.label {
+    width: 150px;
+}

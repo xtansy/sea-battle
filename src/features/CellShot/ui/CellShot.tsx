@@ -1,7 +1,13 @@
 import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { type ICell, Cell, canShootSelector, shoot } from "entities/game";
+import {
+    type ICell,
+    Cell,
+    canShootSelector,
+    shoot,
+    devModeSelector,
+} from "entities/game";
 
 interface CellShopProps {
     cell: ICell;
@@ -12,10 +18,17 @@ interface CellShopProps {
 export const CellShot: React.FC<CellShopProps> = ({ cell }) => {
     const dispatch = useDispatch();
     const canShoot = useSelector(canShootSelector);
+    const devMode = useSelector(devModeSelector);
 
     const onClick = useCallback(() => {
         dispatch(shoot({ x: cell.x, y: cell.y }));
     }, []);
 
-    return <Cell enemy cell={cell} onClick={canShoot ? onClick : undefined} />;
+    return (
+        <Cell
+            enemy={!devMode}
+            cell={cell}
+            onClick={canShoot ? onClick : undefined}
+        />
+    );
 };

@@ -1,0 +1,21 @@
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.shipActions {
+    width: 90%;
+    display: flex;
+    gap: 15px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

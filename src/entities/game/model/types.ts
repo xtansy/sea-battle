@@ -35,4 +35,6 @@ export interface GameModel {
     canShoot: boolean;
     myBoardData: BoardData;
     enemyBoardData: BoardData;
+
+    devMode: boolean;
 }

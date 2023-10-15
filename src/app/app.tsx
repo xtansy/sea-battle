@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider as ModalProvider } from "@ebay/nice-modal-react";
-
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 import { store, persistedStore } from "./store";
 import { Routing } from "./routing";
 import "../shared/base.css";
@@ -17,7 +18,9 @@ ReactDOM.createRoot(root).render(
             <BrowserRouter>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistedStore}>
-                        <Routing />
+                        <DndProvider backend={HTML5Backend}>
+                            <Routing />
+                        </DndProvider>
                     </PersistGate>
                 </Provider>
             </BrowserRouter>

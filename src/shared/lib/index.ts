@@ -1,2 +1,4 @@
 export * from "./useAlertModal/useAlertModal";
-export * from "./formatTimestamp/formatTimestamp";
+export * from "./formatTimestamp";
+export * from "./hooks/hooks";
+export * from "./getLetterByIndex";

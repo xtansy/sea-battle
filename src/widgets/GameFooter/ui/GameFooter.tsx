@@ -52,18 +52,18 @@ export const GameFooter = () => {
                 </p>
             </div>
             <div className={css.buttons}>
-                <Button onClick={onClickRules} className={css.button}>
-                    Посмотреть правила
-                </Button>
-                <Button onClick={onClickGameStories} className={css.button}>
-                    История моих игр
-                </Button>
                 <Button
                     disabled={gameStatus === GameStatus.in_the_game}
                     className={css.button}
                     onClick={onClickGoHome}
                 >
                     ← Назад
+                </Button>
+                <Button onClick={onClickGameStories} className={css.button}>
+                    История моих игр
+                </Button>
+                <Button onClick={onClickRules} className={css.button}>
+                    Посмотреть правила
                 </Button>
             </div>
         </div>

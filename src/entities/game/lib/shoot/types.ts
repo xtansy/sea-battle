@@ -3,32 +3,12 @@ export interface ShootData {
     y: number;
 }
 
-export interface HorizontalShip {
-    startY: number;
-    endY: number;
-    x: number;
-    type: "horizontal";
-}
-
-export interface VerticalShip {
-    startX: number;
-    endX: number;
-    y: number;
-    type: "vertical";
-}
-
-export interface OneCellShip {
-    x: number;
-    y: number;
-    type: "oneCell";
-}
-
-export type Ship = HorizontalShip | VerticalShip | OneCellShip;
-
 type Missed = false;
-
-interface Hit {
-    destroyed: boolean;
-}
-
+type Hit = { destroyed: boolean };
 export type ShootResult = Hit | Missed;
+
+export interface Handlers {
+    onDamaged: () => void;
+    onMissed: () => void;
+    onAllShipsDestoyed: () => void;
+}

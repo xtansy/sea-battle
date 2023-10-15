@@ -9,10 +9,10 @@ export const GamePage = () => {
     useRobot();
     useGameStories();
     return (
-        <div>
+        <>
             <GameHeader />
             <GameContent />
             <GameFooter />
-        </div>
+        </>
     );
 };
