@@ -14,7 +14,6 @@ export const robotLogic = (
 ): ShootData => {
     const hitChance = getHitChance(mode);
     const randomInt = generateRandomInt(0, 100);
-    console.log(randomInt);
     if (hitChance >= randomInt && targets.length > 0) {
         const hit = generateRandomInt(0, targets.length - 1);
         return targets[hit];

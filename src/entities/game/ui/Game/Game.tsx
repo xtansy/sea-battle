@@ -37,6 +37,13 @@ export const Game: React.FC<GameProps> = ({
         return <p className={css.robotShootInfo}>ход ИИ</p>;
     }, [gameStatus, canShoot]);
 
+    /**
+     * ✅ FSD Best practice
+     *
+     * Receive game actions (shoot)
+     * to render-prop to avoid entity cross-import
+     */
+
     return (
         <div className={css.game}>
             <div className={css.header}>
