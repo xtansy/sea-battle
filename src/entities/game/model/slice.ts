@@ -115,6 +115,7 @@ export const gameModel = createSlice({
         },
 
         startGame: (state) => {
+            clearBoard(state.myBoardData.board);
             emptyFilledBoard(state.enemyBoardData.board);
             randomPlaceShip(state.enemyBoardData.board);
             state.gameStatus = GameStatus.in_the_game;
