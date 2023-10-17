@@ -6,7 +6,6 @@ export const robotLogic = (
     emptyCells: ShootData[]
 ): ShootData => {
     if (40 > generateRandomInt(0, 100) && targets.length > 0) {
-        console.log("попал");
         const hit = generateRandomInt(0, targets.length - 1);
         return targets[hit];
     }
