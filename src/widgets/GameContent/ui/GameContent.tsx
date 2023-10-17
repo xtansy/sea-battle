@@ -5,6 +5,7 @@ import { CellShot } from "features/CellShot";
 import { RestartGameButton } from "features/RestartGame";
 import { StartGameButton } from "features/StartGame";
 import { RandomPlaceShipButton } from "features/RandomPlaceShip";
+import { SetRobotMode } from "features/SetRobotMode";
 import {
     myBoardDataSelector,
     enemyBoardDataSelector,
@@ -33,6 +34,7 @@ export const GameContent = () => {
         }
         return (
             <>
+                <SetRobotMode />
                 <div className={css.buttons}>
                     <StartGameButton>Играть</StartGameButton>
                     <RandomPlaceShipButton />

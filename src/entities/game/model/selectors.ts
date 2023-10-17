@@ -29,3 +29,5 @@ export const targetSelector = createSelector(myBoardSelector, (board) =>
 export const myEmptyCellsSelector = createSelector(myBoardSelector, (board) =>
     findTargets(board, (cellStatus) => cellStatus === CellStatus.empty)
 );
+
+export const robotModeSelector = (state: RootState) => state.game.robotMode;

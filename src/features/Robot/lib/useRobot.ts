@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
     canShootSelector,
     gameStatusSelector,
+    robotModeSelector,
     robotShoot,
     GameStatus,
     targetSelector,
@@ -14,6 +15,7 @@ import { robotLogic } from "./robotLogic";
 export const useRobot = () => {
     const dispatch = useDispatch();
     const canShoot = useSelector(canShootSelector);
+    const robotMode = useSelector(robotModeSelector);
     const gameStatus = useSelector(gameStatusSelector);
     const emptyCells = useSelector(myEmptyCellsSelector);
     const targets = useSelector(targetSelector);
@@ -24,7 +26,11 @@ export const useRobot = () => {
         return {
             start: () => {
                 interval = setInterval(() => {
-                    const shootData = robotLogic(targets, emptyCells);
+                    const shootData = robotLogic(
+                        targets,
+                        emptyCells,
+                        robotMode
+                    );
                     dispatch(robotShoot(shootData));
                 }, 1000);
             },
@@ -32,7 +38,7 @@ export const useRobot = () => {
                 clearInterval(interval);
             },
         };
-    }, [dispatch, emptyCells, targets]);
+    }, [dispatch, emptyCells, targets, robotMode]);
 
     useEffect(() => {
         const robot = robotPlayer();

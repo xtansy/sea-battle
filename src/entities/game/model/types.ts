@@ -29,6 +29,8 @@ export enum GameStatus {
     defeat = "Поражение",
 }
 
+export type RobotMode = "easy" | "medium" | "hard";
+
 export interface GameModel {
     gameType: null | GameType;
     gameStatus: GameStatus;
@@ -37,4 +39,5 @@ export interface GameModel {
     enemyBoardData: BoardData;
 
     devMode: boolean;
+    robotMode: RobotMode;
 }

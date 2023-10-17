@@ -1,0 +1,18 @@
+.setRobotModeBlock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    min-height: 35px;
+}
+
+.label {
+    font-size: 20px;
+}
+
+.select {
+    font-size: 20px;
+    min-height: 30px;
+}

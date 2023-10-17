@@ -1,6 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { type GameModel, type ICell, GameStatus } from "./types";
+import {
+    type GameModel,
+    type ICell,
+    GameStatus,
+    type RobotMode,
+} from "./types";
 import {
     type ShootData,
     EMPTY_BOARD,
@@ -15,49 +20,6 @@ import {
 
 import { generateRandomBoolean } from "shared/lib";
 
-// const createMatrix = () => {
-//     const board: ICell[][] = [];
-
-//     for (let i = 0; i < 10; i++) {
-//         board[i] = [];
-//         for (let j = 0; j < 10; j++) {
-//             board[i][j] = { x: i, y: j, status: CellStatus.empty };
-//         }
-//     }
-
-//     // 4
-//     for (let i = 3; i < 7; i++) {
-//         board[0][i].status = CellStatus.with_ship;
-//     }
-
-//     // 3
-//     for (let i = 2; i < 5; i++) {
-//         board[2][i].status = CellStatus.with_ship;
-//     }
-//     for (let i = 7; i < 10; i++) {
-//         board[2][i].status = CellStatus.with_ship;
-//     }
-
-//     // 2
-//     for (let i = 4; i < 6; i++) {
-//         board[4][i].status = CellStatus.with_ship;
-//     }
-//     for (let i = 7; i < 9; i++) {
-//         board[4][i].status = CellStatus.with_ship;
-//     }
-//     for (let i = 7; i < 9; i++) {
-//         board[6][i].status = CellStatus.with_ship;
-//     }
-
-//     // 1
-//     board[2][0].status = CellStatus.with_ship;
-//     board[4][0].status = CellStatus.with_ship;
-//     board[6][0].status = CellStatus.with_ship;
-//     board[8][0].status = CellStatus.with_ship;
-
-//     return board;
-// };
-
 const dummy: ICell[][] = EMPTY_BOARD;
 
 const initialState: GameModel = {
@@ -69,6 +31,7 @@ const initialState: GameModel = {
     enemyBoardData: { destroyed: 0, board: dummy },
 
     devMode: false, // for your convenience, checking the logic of victory
+    robotMode: "easy",
 };
 
 export const gameModel = createSlice({
@@ -181,6 +144,10 @@ export const gameModel = createSlice({
         toggleDevMode: (state) => {
             state.devMode = !state.devMode;
         },
+
+        setRobotMode: (state, { payload }: PayloadAction<RobotMode>) => {
+            state.robotMode = payload;
+        },
     },
 });
 
@@ -190,6 +157,7 @@ export const {
     startGame,
     shoot,
     restartGame,
+    setRobotMode,
     robotShoot,
     removeShip,
     randomPlaceMyShip,
