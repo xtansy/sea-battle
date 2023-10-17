@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { countShips, findTargets } from "entities/game";
+import { CellStatus, countShips, findTargets } from "entities/game";
 
 export const gameTypeSelector = (state: RootState) => state.game.gameType;
 
@@ -23,5 +23,9 @@ export const shipsCountSelector = createSelector(myBoardSelector, (board) => {
 export const devModeSelector = (state: RootState) => state.game.devMode;
 
 export const targetSelector = createSelector(myBoardSelector, (board) =>
-    findTargets(board)
+    findTargets(board, (cellStatus) => cellStatus === CellStatus.with_ship)
+);
+
+export const myEmptyCellsSelector = createSelector(myBoardSelector, (board) =>
+    findTargets(board, (cellStatus) => cellStatus === CellStatus.empty)
 );

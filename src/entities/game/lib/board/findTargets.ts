@@ -1,14 +1,15 @@
-import { CellStatus, ICell } from "..";
+import { type ShootData, type ICell, CellStatus } from "..";
 
-export type Target = { x: number; y: number };
-
-export const findTargets = (board: ICell[][]): Target[] => {
-    const targets: Target[] = [];
+export const findTargets = (
+    board: ICell[][],
+    cb: (cellStatus: CellStatus) => boolean
+): ShootData[] => {
+    const targets: ShootData[] = [];
 
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[0].length; j++) {
             const cell = board[i][j];
-            if (cell.status === CellStatus.with_ship) {
+            if (cb(cell.status)) {
                 targets.push({ x: cell.x, y: cell.y });
             }
         }

@@ -115,19 +115,23 @@ export const gameModel = createSlice({
         },
 
         startGame: (state) => {
+            state.myBoardData.destroyed = 0;
             clearBoard(state.myBoardData.board);
+
+            state.enemyBoardData.destroyed = 0;
             emptyFilledBoard(state.enemyBoardData.board);
             randomPlaceShip(state.enemyBoardData.board);
+
             state.gameStatus = GameStatus.in_the_game;
             state.canShoot = generateRandomBoolean();
         },
 
         restartGame: (state) => {
-            clearBoard(state.myBoardData.board);
             state.myBoardData.destroyed = 0;
+            clearBoard(state.myBoardData.board);
 
-            emptyFilledBoard(state.enemyBoardData.board);
             state.enemyBoardData.destroyed = 0;
+            emptyFilledBoard(state.enemyBoardData.board);
 
             state.canShoot = false;
             state.gameStatus = GameStatus.preparation;
