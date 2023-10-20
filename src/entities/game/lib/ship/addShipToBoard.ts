@@ -6,21 +6,6 @@ export enum ShipType {
     ThreeDeck = 3,
     FourDeck = 4,
 }
-export const countShipsOnBoard2 = (board: ICell[][], shipType: ShipType) => {
-    let count = 0;
-
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            if (board[i][j].status === CellStatus.with_ship) {
-                if (isShipOfGivenType(board, shipType, i, j)) {
-                    count++;
-                }
-            }
-        }
-    }
-
-    return count;
-};
 
 export const countShipsOnBoard = (board: ICell[][], shipType: ShipType) => {
     let count = 0;
@@ -74,36 +59,6 @@ function findShipSize(
     return shipSize;
 }
 
-function isShipOfGivenType(
-    board: ICell[][],
-    shipType: ShipType,
-    x: number,
-    y: number
-) {
-    let length = 0;
-
-    // Проверяем, что корабль размещается только горизонтально или вертикально
-    if (x + shipType <= board.length) {
-        for (let i = x; i < x + shipType; i++) {
-            if (board[i][y].status === CellStatus.with_ship) {
-                length++;
-            } else {
-                break;
-            }
-        }
-    } else if (y + shipType <= board[0].length) {
-        for (let j = y; j < y + shipType; j++) {
-            if (board[x][j].status === CellStatus.with_ship) {
-                length++;
-            } else {
-                break;
-            }
-        }
-    }
-
-    return length === shipType;
-}
-
 function getMaximumShipsCount(shipType: ShipType) {
     switch (shipType) {
         case ShipType.OneDeck:
@@ -139,12 +94,6 @@ export const addShipToBoard = (
         }
     } else {
         if (endX - startX + 1 !== shipType) {
-            return false;
-        }
-    }
-
-    if (shipType === 1) {
-        if (!checkIsOneCellShip({ x: startX, y: startY }, board)) {
             return false;
         }
     }

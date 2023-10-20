@@ -5,10 +5,10 @@ export const checkIsOneCellShip = ({ x, y }: ShootData, board: ICell[][]) => {
     const numCols = board[0].length;
 
     const directions = [
-        [0, -1], // Верхний
-        [0, 1], // Нижний
-        [-1, 0], // Левый
-        [1, 0], // Правый
+        [0, -1],
+        [0, 1],
+        [-1, 0],
+        [1, 0],
         [-1, -1],
         [1, 1],
     ];
