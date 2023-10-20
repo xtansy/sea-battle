@@ -4,7 +4,7 @@ export const checkIsHorizontalShip = (
     { x, y }: ShootData,
     board: ICell[][]
 ) => {
-    const adjacentHorizontal = [board[x][y - 1], board[x][y + 1]];
+    const adjacentHorizontal = [board[y][x - 1], board[y][x + 1]];
     return !!adjacentHorizontal.find(
         (item) =>
             item && // Check that the element exists

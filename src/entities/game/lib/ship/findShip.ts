@@ -14,52 +14,52 @@ export const findShip = ({ x, y }: ShootData, board: ICell[][]): ShipCoords => {
 
     const isHorizontalShip = checkIsHorizontalShip({ x, y }, board);
     if (isHorizontalShip) {
-        let startY = y;
-        for (let i = y; i >= 1 && checkIsCellHasShip(board[x][i - 1]); i--) {
-            startY--;
+        let startX = x;
+        for (let i = x; i >= 1 && checkIsCellHasShip(board[y][i - 1]); i--) {
+            startX--;
         }
 
-        let endY = y;
+        let endX = x;
         for (
-            let i = y;
-            i < board[x].length - 1 && checkIsCellHasShip(board[x][i + 1]);
+            let i = x;
+            i < board[x].length - 1 && checkIsCellHasShip(board[y][i + 1]);
             i++
         ) {
-            endY++;
+            endX++;
         }
         return {
             type: "horizontal",
-            startY,
-            endY,
-            x,
+            startX,
+            endX,
+            y,
         };
     }
 
     // vertical ship
-    let startX = x;
+    let startY = y;
     for (
-        let i = x;
-        i >= 0 && board[i - 1] && checkIsCellHasShip(board[i - 1][y]);
+        let i = y;
+        i >= 0 && board[i - 1] && checkIsCellHasShip(board[i - 1][x]);
         i--
     ) {
-        startX--;
+        startY--;
     }
 
-    let endX = x;
+    let endY = y;
     for (
-        let i = x;
+        let i = y;
         i < board[i].length &&
         board[i + 1] &&
-        checkIsCellHasShip(board[i + 1][y]);
+        checkIsCellHasShip(board[i + 1][x]);
         i++
     ) {
-        endX++;
+        endY++;
     }
 
     return {
         type: "vertical",
-        startX,
-        endX,
-        y,
+        startY,
+        endY,
+        x,
     };
 };

@@ -38,6 +38,10 @@ export const RemoveShip = () => {
                     <p className={css.descr}>
                         Удалит весь корабль по данным одной его ячейки
                     </p>
+                    <p className={css.descr}>
+                        Также можно{" "}
+                        <span>просто нажать на корабль для удаления</span>
+                    </p>
                 </div>
                 <select
                     onChange={onChangeX}

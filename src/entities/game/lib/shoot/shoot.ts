@@ -8,7 +8,7 @@ export const shootCell = (
     boardData: BoardData
 ): ShootResult => {
     const board = boardData.board;
-    const cell = board[x][y];
+    const cell = board[y][x];
 
     if (cell.status === CellStatus.empty) {
         cell.status = CellStatus.damaged_empty;
@@ -18,8 +18,6 @@ export const shootCell = (
     if (cell.status === CellStatus.with_ship) {
         cell.status = CellStatus.damaged_with_ship;
         const ship = findShip({ x, y }, board);
-
-        // console.log(ship);
 
         if (checkIsShipDestroyed(ship, board)) {
             boardData.destroyed++;

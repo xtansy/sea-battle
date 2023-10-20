@@ -2,16 +2,16 @@ export { type ICell, CellStatus } from "../../model/types";
 export { type ShootData } from "../shoot/types";
 
 export interface HorizontalShipCoords {
-    startY: number;
-    endY: number;
-    x: number;
+    startX: number;
+    endX: number;
+    y: number;
     type: "horizontal";
 }
 
 export interface VerticalShipCoords {
-    startX: number;
-    endX: number;
-    y: number;
+    startY: number;
+    endY: number;
+    x: number;
     type: "vertical";
 }
 

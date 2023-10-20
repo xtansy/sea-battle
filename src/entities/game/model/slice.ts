@@ -148,6 +148,12 @@ export const gameModel = createSlice({
         setRobotMode: (state, { payload }: PayloadAction<RobotMode>) => {
             state.robotMode = payload;
         },
+
+        toPreparation: (state) => {
+            state.gameStatus = GameStatus.preparation;
+            emptyFilledBoard(state.myBoardData.board);
+            emptyFilledBoard(state.enemyBoardData.board);
+        },
     },
 });
 
@@ -159,6 +165,7 @@ export const {
     restartGame,
     setRobotMode,
     robotShoot,
+    toPreparation,
     removeShip,
     randomPlaceMyShip,
     addShip,

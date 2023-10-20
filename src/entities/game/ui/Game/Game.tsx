@@ -13,17 +13,19 @@ import {
 } from "entities/game";
 
 interface GameProps {
-    renderCell: (cell: ICell) => React.ReactNode;
     myBoardData: BoardData;
     enemyBoardData: BoardData;
     bottomSlot?: React.ReactNode;
+    renderCell: (cell: ICell) => React.ReactNode;
+    renderMyBoard?: (board: ICell[][]) => React.ReactNode;
 }
 
 export const Game: React.FC<GameProps> = ({
     myBoardData,
     enemyBoardData,
-    renderCell,
     bottomSlot,
+    renderCell,
+    renderMyBoard,
 }) => {
     const gameStatus = useSelector(gameStatusSelector);
     const canShoot = useSelector(canShootSelector);
@@ -51,7 +53,11 @@ export const Game: React.FC<GameProps> = ({
                 {MoveInfo}
             </div>
             <div className={css.boards}>
-                <Board board={myBoardData.board} />
+                {renderMyBoard ? (
+                    renderMyBoard(myBoardData.board)
+                ) : (
+                    <Board board={myBoardData.board} />
+                )}
                 <Board board={enemyBoardData.board} renderCell={renderCell} />
             </div>
             <div className={css.bottomSlot}>{bottomSlot && bottomSlot}</div>

@@ -9,6 +9,15 @@
     justify-content: space-between;
 }
 
+.descr {
+    line-height: 20px;
+}
+
+.descr span {
+    font-weight: bold;
+    color: var(--second-text-color);
+}
+
 .selectBlock {
     width: 100%;
     display: flex;

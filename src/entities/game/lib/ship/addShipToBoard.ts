@@ -74,6 +74,48 @@ function getMaximumShipsCount(shipType: ShipType) {
     }
 }
 
+function isShipPlacementValid(
+    board: ICell[][],
+    startX: number,
+    startY: number,
+    endX: number,
+    endY: number
+) {
+    const checkAdjacentCell = (x: number, y: number) => {
+        if (x >= 0 && x < board[0].length && y >= 0 && y < board.length) {
+            return board[y][x].status === CellStatus.with_ship;
+        }
+        return false;
+    };
+
+    const offsets = [
+        [-1, 0],
+        [1, 0],
+        [0, -1],
+        [0, 1], // Горизонтальные и вертикальные соседи
+        [-1, -1],
+        [1, -1],
+        [-1, 1],
+        [1, 1], // Диагональные соседи
+    ];
+
+    for (let i = Math.min(startX, endX); i <= Math.max(startX, endX); i++) {
+        for (let j = Math.min(startY, endY); j <= Math.max(startY, endY); j++) {
+            if (board[j][i].status === CellStatus.with_ship) {
+                return false;
+            }
+
+            for (const [offsetX, offsetY] of offsets) {
+                if (checkAdjacentCell(i + offsetX, j + offsetY)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
 export const addShipToBoard = (
     board: ICell[][],
     shipType: ShipType,
@@ -86,35 +128,24 @@ export const addShipToBoard = (
         return false;
     }
 
-    const isHorizontal = startX === endX;
-
-    if (isHorizontal) {
-        if (endY - startY + 1 !== shipType) {
-            return false;
-        }
-    } else {
-        if (endX - startX + 1 !== shipType) {
-            return false;
-        }
+    if (!(startX === endX || startY === endY)) {
+        return false;
     }
 
     if (
         shipType !== 1 &&
-        !(endX - startX + 1 <= shipType || endY - startY + 1 <= shipType)
+        !(
+            Math.abs(endX - startX) + 1 === shipType ||
+            Math.abs(endY - startY) + 1 === shipType
+        )
     ) {
         return false;
     }
 
     // Проверяем, что расстояние между кораблями минимум одна клетка
-    for (let i = Math.min(startX, endX); i <= Math.max(startX, endX); i++) {
-        for (let j = Math.min(startY, endY); j <= Math.max(startY, endY); j++) {
-            if (i >= 0 && i < board.length && j >= 0 && j < board[0].length) {
-                if (board[i][j].status === CellStatus.with_ship) {
-                    return false;
-                }
-            }
-        }
-    }
+    const valid = isShipPlacementValid(board, startX, startY, endX, endY);
+
+    if (!valid) return false;
 
     // Проверяем, что на доске есть доступное место для корабля заданного типа
     if (countShipsOnBoard(board, shipType) >= getMaximumShipsCount(shipType)) {
@@ -122,8 +153,8 @@ export const addShipToBoard = (
     }
 
     // Размещаем корабль на доске
-    for (let i = startX; i <= endX; i++) {
-        for (let j = startY; j <= endY; j++) {
+    for (let i = Math.min(startY, endY); i <= Math.max(startY, endY); i++) {
+        for (let j = Math.min(startX, endX); j <= Math.max(startX, endX); j++) {
             board[i][j].status = CellStatus.with_ship;
         }
     }

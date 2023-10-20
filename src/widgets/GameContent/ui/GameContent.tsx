@@ -17,6 +17,8 @@ import {
 import { PutShip } from "features/PutShip";
 import { RemoveShip } from "features/RemoveShip";
 import { ToggleDevMode } from "features/ToggleDevMode";
+import { ToPreparationButton } from "features/ToPreparation";
+import { BoardSeparation } from "features/BoardSeparation";
 
 export const GameContent = () => {
     const myBoardData = useSelector(myBoardDataSelector);
@@ -29,6 +31,16 @@ export const GameContent = () => {
                 <div className={css.actions}>
                     <RestartGameButton />
                     <ToggleDevMode />
+                </div>
+            );
+        } else if (
+            gameStatus === GameStatus.victory ||
+            gameStatus === GameStatus.defeat
+        ) {
+            return (
+                <div className={css.buttons}>
+                    <StartGameButton>Играть</StartGameButton>
+                    <ToPreparationButton />
                 </div>
             );
         }
@@ -47,9 +59,16 @@ export const GameContent = () => {
         );
     };
 
+    const generateMyBoard = () => {
+        return gameStatus === GameStatus.preparation
+            ? (board: ICell[][]) => <BoardSeparation board={board} />
+            : undefined;
+    };
+
     return (
         <div className={css.gameContent}>
             <Game
+                renderMyBoard={generateMyBoard()}
                 myBoardData={myBoardData}
                 enemyBoardData={enemyBoardData}
                 bottomSlot={generateBottomSlot()}

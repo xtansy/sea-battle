@@ -19,7 +19,7 @@ export const checkIsOneCellShip = ({ x, y }: ShootData, board: ICell[][]) => {
 
         // Проверяем, что новые координаты находятся в пределах массива
         if (newX >= 0 && newX < numRows && newY >= 0 && newY < numCols) {
-            const cell = board[newX][newY];
+            const cell = board[newY][newX];
             if (
                 cell.status === CellStatus.damaged_with_ship ||
                 cell.status === CellStatus.with_ship

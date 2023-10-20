@@ -10,7 +10,7 @@ export const EMPTY_BOARD: ICell[][] = new Array(BOARD_SIZE)
     .map((_, rowIndex) =>
         new Array(BOARD_SIZE).fill(null).map((_, colIndex) => ({
             status: CellStatus.empty,
-            x: rowIndex,
-            y: colIndex,
+            x: colIndex,
+            y: rowIndex,
         }))
     );

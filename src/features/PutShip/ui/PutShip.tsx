@@ -57,6 +57,10 @@ export const PutShip = () => {
 
     return (
         <div className={css.putShip}>
+            <p className={css.descr}>
+                Расставляйте корабли <span>с помощью мыши на своей доске</span>{" "}
+                либо вручную:
+            </p>
             <div className={css.selectBlock}>
                 <label>Выберите размер корабля</label>
                 <select
@@ -76,9 +80,9 @@ export const PutShip = () => {
             <div className={css.selectBlock}>
                 <label className={css.label}>Координаты начала</label>
                 <select
-                    onChange={onSelectStartY}
+                    onChange={onSelectStartX}
                     className={css.select}
-                    value={start.startY}
+                    value={start.startX}
                 >
                     {NUMBERS.map((_, i) => (
                         <option key={i} value={i}>
@@ -87,9 +91,9 @@ export const PutShip = () => {
                     ))}
                 </select>
                 <select
-                    onChange={onSelectStartX}
+                    onChange={onSelectStartY}
                     className={css.select}
-                    value={start.startX}
+                    value={start.startY}
                 >
                     {NUMBERS.map((_, i) => (
                         <option key={i} value={i}>
@@ -102,9 +106,9 @@ export const PutShip = () => {
                 <div className={css.selectBlock}>
                     <label className={css.label}>Координаты конца</label>
                     <select
-                        onChange={onSelectEndY}
+                        onChange={onSelectEndX}
                         className={css.select}
-                        value={end.endY}
+                        value={end.endX}
                     >
                         {NUMBERS.map((_, i) => (
                             <option key={i} value={i}>
@@ -113,8 +117,8 @@ export const PutShip = () => {
                         ))}
                     </select>
                     <select
-                        onChange={onSelectEndX}
-                        value={end.endX}
+                        onChange={onSelectEndY}
+                        value={end.endY}
                         className={css.select}
                     >
                         {NUMBERS.map((_, i) => (

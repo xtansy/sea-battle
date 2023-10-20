@@ -31,7 +31,7 @@ const isValidPlacement = (
                 offsetX < BOARD_SIZE &&
                 offsetY >= 0 &&
                 offsetY < BOARD_SIZE &&
-                board[offsetX][offsetY].status === CellStatus.with_ship
+                board[offsetY][offsetX].status === CellStatus.with_ship
             ) {
                 return false;
             }
@@ -49,7 +49,7 @@ const isValidPlacement = (
             currentX >= BOARD_SIZE ||
             currentY < 0 ||
             currentY >= BOARD_SIZE ||
-            board[currentX][currentY].status === CellStatus.with_ship ||
+            board[currentY][currentX].status === CellStatus.with_ship ||
             !checkSurrounding(currentX, currentY)
         ) {
             return false;
@@ -71,11 +71,11 @@ const placeShipOnBoard = (shipSize: number, board: ICell[][]) => {
         if (isValidPlacement(x, y, shipSize, isVertical, board)) {
             if (isVertical) {
                 for (let i = 0; i < shipSize; i++) {
-                    board[x + i][y].status = CellStatus.with_ship;
+                    board[y][x + i].status = CellStatus.with_ship;
                 }
             } else {
                 for (let i = 0; i < shipSize; i++) {
-                    board[x][y + i].status = CellStatus.with_ship;
+                    board[y + i][x].status = CellStatus.with_ship;
                 }
             }
             placed = true;

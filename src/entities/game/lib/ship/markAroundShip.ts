@@ -21,7 +21,7 @@ const markAroundCell = (x: number, y: number, board: ICell[][]) => {
 
         // Проверяем, что новые координаты находятся в пределах массива
         if (newX >= 0 && newX < numRows && newY >= 0 && newY < numCols) {
-            const cell = board[newX][newY];
+            const cell = board[newY][newX];
             if (cell.status === CellStatus.empty) {
                 cell.status = CellStatus.damaged_empty;
             }
@@ -35,13 +35,13 @@ export const markAroundShip = (ship: ShipCoords, board: ICell[][]) => {
             markAroundCell(ship.x, ship.y, board); // можно сюда передавать directions
             break;
         case "horizontal":
-            for (let i = ship.startY; i <= ship.endY; i++) {
-                markAroundCell(ship.x, i, board);
+            for (let i = ship.startX; i <= ship.endX; i++) {
+                markAroundCell(i, ship.y, board);
             }
             break;
         case "vertical":
-            for (let i = ship.startX; i <= ship.endX; i++) {
-                markAroundCell(i, ship.y, board);
+            for (let i = ship.startY; i <= ship.endY; i++) {
+                markAroundCell(ship.x, i, board);
             }
             break;
     }

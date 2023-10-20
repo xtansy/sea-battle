@@ -10,6 +10,10 @@
     transition:  all 0.3s ;
 }
 
+.sep {
+    background-color: yellow;
+}
+
 .cell_empty {
     transition:  all 0.3s ;
 }

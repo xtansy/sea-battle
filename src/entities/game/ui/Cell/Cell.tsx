@@ -19,15 +19,12 @@ export const Cell: React.FC<CellProps> = ({
 }) => {
     const modifier = css[`cell_${cell.status}`];
 
-    const clazz = classNames(
-        css.cell,
-        {
-            //          ↓ not visualize ship if cell is an enemy
-            [modifier]: !(enemy && cell.status === CellStatus.with_ship),
-            [css["cell_pointer"]]: onClick,
-        },
-        className
-    );
+    const clazz = classNames(css.cell, {
+        //          ↓ not visualize ship if cell is an enemy
+        [modifier]: !(enemy && cell.status === CellStatus.with_ship),
+        [css["cell_pointer"]]: onClick,
+        [className ? css[className] : ""]: !!className,
+    });
 
     return <div onClick={onClick} className={clazz}></div>;
 };

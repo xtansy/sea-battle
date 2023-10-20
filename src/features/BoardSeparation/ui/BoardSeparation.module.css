@@ -1,0 +1,18 @@
+.ships {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.shipInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.count {
+    font-size: 18px;
+    color: var(--second-text-color);
+    font-weight: bold;
+}
